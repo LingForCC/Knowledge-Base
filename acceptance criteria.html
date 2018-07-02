@@ -1,0 +1,55 @@
+<h1>Acceptance Criteria</h1>
+<p>Acceptance Criteria is the final output of <a href="requirement%20refinement.html">requirement refinement</a>. It leverages the concept of state machine to describe the behaviors of a software application. It is a bridge between requirement and technical design/<a href="test%20strategy.html">test strategy</a>. And this is also the most important thing engineering team need to confirm before starting to do the actual implementaiton.</p>
+<p> </p>
+<h2>Format</h2>
+<p>Theoretically, there isn't a dedicated format when writing Acceptance Criteria. But personally I recommend following the format introduced by Dan North as described below(more info can be found in <a href="https://en.wikipedia.org/wiki/Behavior-driven_development">Wiki</a>.</p>
+<blockquote>
+<p><strong>Scenario 1: Refunded items should be returned to stock</strong><br />
+Given that a customer previously bought a black sweater from me<br />
+And I have three black sweaters in stock<br />
+When he returns the black sweater for a refund<br />
+Then I should have four black sweaters in stock</p>
+</blockquote>
+<blockquote>
+<p><strong>Scenario 2: Replaced items should be returned to stock</strong><br />
+Given that a customer previously bought a blue garment from me<br />
+And I have two blue garments in stock<br />
+And three black garments in stock<br />
+When he returns the blue garment for a replacement in black<br />
+Then I should have three blue garments in stock<br />
+And two black garments in stock</p>
+</blockquote>
+<p>There are several advantages when using this format</p>
+<p><strong>1. Understand Technical Dependency</strong><br />
+Usually, a well-designed software is constructed by a bunch of functional modules. Based on the Given phrase, it is easy to figure out the technical dependency between existing modules and current to-be-implemented module. Take Scenario 1 mentioned above as an example, based on the content in Given phrase, it is easy to figure out that the to-be-implemented module needs to interact with two existing modules. One is the module which tracks what user bought before. And the other one is the module which tracks the inventory.</p>
+<p><strong>2. Estimate Impact Range</strong><br />
+Once the dependency is identified, developers can use it to estimate the impact range, which means developers can understand the feature described in this Acceptance Critieria could be impacted when changes are applied to related modules in the future. In this way, developers can provide an estimation of the things need to be tested after each code change.</p>
+<p><strong>3. Design Unit Test and Integration Test</strong><br />
+Besides, the dependency also helps developers to understand how to do Unit Test or Integration Test for current Acceptance Criteria, since the related modules are the things need to be mocked.</p>
+<p> </p>
+<h2>Testable</h2>
+<p>AC should be testable. An example as below is not testable.</p>
+<blockquote>
+<p>Given the click to dial is enabled<br />
+Then the app should detect the phone numbers on web pages</p>
+</blockquote>
+<p>Because, it is impossible to test it against all the web pages in the world. So the correct way to do this is to list the pages we need to support specificly.</p>
+<p> </p>
+<h2>Ubiquitous</h2>
+<p>AC should be ubiquitous, which means that everyone involved in the writing should have the same understanding. Most of the time, people will assume that others have the same understanding with them when reading the same thing. So it is always good to list all the potential points which could make different understandings.</p>
+<p>As the example below</p>
+<blockquote>
+<p>When user input Non integer number<br />
+Then user will be prompt warning</p>
+</blockquote>
+<p>It looks quite simple. But actually, there could be different understanding when testing against Non integer numbers. It is good to list Non integer number as examples in this case.</p>
+<blockquote>
+<p>When user input <Non integer><br />
+Then user will be prompt number format warning<br />
+Example:<br />
+| integer |<br />
+| 0.1       |<br />
+| abc      |<br />
+| -43      |<br />
+| 3@a     |</p>
+</blockquote>
