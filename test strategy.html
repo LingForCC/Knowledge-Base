@@ -1,20 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title>Test Strategy</title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="1504.83">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-    span.s1 {text-decoration: underline}
-  </style>
-</head>
-<body>
-<p class="p1">@todo</p>
-<p class="p2"><br></p>
-<p class="p1">This is something we need to consider with <a href="acceptance%20criteria.html"><span class="s1">AC</span></a><span class="Apple-converted-space">&nbsp;</span></p>
-</body>
-</html>
+<h1>Test Strategy</h1>
+<p><img src="https://image.ibb.co/n5Bqwo/Layer_Test_Pyramid.png" alt="" /></p>
+<p>Test Strategy is a concept that the test of a software application can be divided into several layers. And each layer should take different weights. The bottom of the pyramid, which is unit test, should take the biggest weights. And the test closer to the top should be lesser in weight. This means that to test a software, most of the test should be done with automation tests, including unit test, integration test, component test and part of the end-to-end test. And quality engineer should focus on the cases which are difficult to automate in end-to-end test or exploratory test, like unexpected use cases.</p>
+<h2>Why Need Test Strategy</h2>
+<h3>Find Problem as Early as Possible</h3>
+<p>As most of the tests are automated, it means that the tests can be run right after the code is merged or even before merge, like using Pull Request in Github or Merge Request in Gitlab. In this way, whether the new code meets the expected behaviors or breaks the existing features can be found as early as possible. The effort is much more smaller if the problem is found earlier in the development process.</p>
+<h3>Reduce Manual Test Effort</h3>
+<p>As most of the tests are automated, it saves the manual test effort significantly. Now quality engineers can put more time on understanding use cases  or help developers to design test cases.</p>
+<h3>Cover Not-Easy-To-Test Scenarios</h3>
+<p>Some scenarios are difficult to test manually. For example, it is cumbersome to simulate different types of errors returned from server in client side. By leveraging test strategy, these scenarios can be covered by things like unit test or integration test.</p>
+<h2>Practice</h2>
+<p>In general, there is no silver bullet when leveraging test strategy. But there are few principles which can be used as reference.</p>
+<p><strong>Discuss Beforehand</strong>   <br />
+It is important to discuss how a feature will be tested beforehand. And it would be nice if the discussion happens</p>
+<ol>
+<li>Based on <a href="acceptance%20criteria.html">Acceptance Criteria</a> of a feature</li>
+<li>Between developers and quality engineers</li>
+</ol>
+<p><strong>Decide by Executor</strong>   <br />
+It doesn't make sense to define things like test coverage. How a feature will be tested should be fully decided by the executors, which are the developers and quality engineers. Basically, it means that not using test coverage to check if a test is sufficient or not. The executors should decide case by case.</p>
+<p><strong>End-to-end Test</strong>   <br />
+Usually end-to-end test is done partly by manual test and partly by automation test. There are thoughts that the automation part should be done according to <a href="acceptance%20criteria.html">Acceptance Criteria</a>. But there are also thoughts that the automation part should be done based on the manual part. Personally, I prefer doing the automation End-to-end test based on the manual End-to-end test case. The reason is as the purpose of end-to-end test is to cover critical actual use case, the test should focus on workflow instead of checkpoint. As <a href="acceptance%20criteria.html">Acceptance Criteria</a> is focusing on checkpoint while manual test case is focusing on workflow, it makes more sense to do end-to-end automation test based on manual test case.</p>
